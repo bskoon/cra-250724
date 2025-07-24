@@ -14,19 +14,22 @@ public class Component {
         this.printer = printer;
     }
 
-    boolean checkTypeRange(int size, int type) {
+    protected boolean checkTypeRange(int size, int type) {
         return 0 <= type && type <= size;
     }
 
-
-    boolean isValidTypeRange(int type) {
+    public boolean isValidTypeRange(int type) {
         return false;
     }
-    void setComponentType(int type) {
+    public void setComponentType(int type) {
         // Do Nothing
     }
 
-    String getName() {
+    public String getName() {
         return "";
+    }
+
+    public Enum getType() {
+        return null;
     }
 }

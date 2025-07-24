@@ -4,7 +4,7 @@ import mission2.type.SteeringType;
 
 public class StreeingSystem extends Component {
     private final String componentNameKor = "조향장치";
-    SteeringType steeringName;
+    private SteeringType steeringType;
 
     @Override
     public boolean isValidTypeRange(int type) {
@@ -18,12 +18,17 @@ public class StreeingSystem extends Component {
 
     @Override
     public void setComponentType(int type) {
-        steeringName = SteeringType.of(type);
-        printer.printSelectName(componentNameKor, steeringName.getName());
+        steeringType = SteeringType.of(type);
+        printer.printSelectName(componentNameKor, steeringType.getName());
     }
 
     @Override
     public String getName() {
-        return steeringName.getName();
+        return steeringType.getName();
+    }
+
+    @Override
+    public Enum getType() {
+        return steeringType;
     }
 }

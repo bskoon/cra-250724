@@ -3,10 +3,11 @@ package mission2;
 import mission2.type.CarType;
 
 public class Car {
-    ComponentSet componentSet;
     private final String componentNameKor = "차량 타입";
-    CarType carType;
-    Printer printer;
+
+    private ComponentSet componentSet;
+    private CarType carType;
+    private Printer printer;
 
     public Car(ComponentSet componentSet) {
         this.componentSet = componentSet;
@@ -31,11 +32,15 @@ public class Car {
         printer.printSelectName(componentNameKor, carType.getName());
     }
 
-    public CarType getType() {
-        return carType;
+    public String getName() {
+        return carType.getName();
     }
 
     public ComponentSet getComponentSet() {
         return componentSet;
+    }
+
+    public CarType getType() {
+        return carType;
     }
 }

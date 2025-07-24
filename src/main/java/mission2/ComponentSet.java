@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ComponentSet {
-    Map<String, String> components;
+    private Map<String, String> components;
 
     public ComponentSet() {
         this.components = new HashMap<>();

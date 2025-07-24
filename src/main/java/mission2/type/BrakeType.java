@@ -25,12 +25,12 @@ public enum BrakeType {
         return name;
     }
 
+    public static BrakeType of(final int type) {
+        return BrakeType.valueOf(CODE_MAP.get(type));
+    }
+
     BrakeType(String name, int typeNum){
         this.name = name;
         this.typeNum = typeNum;
-    }
-
-    public static BrakeType of(final int type) {
-        return BrakeType.valueOf(CODE_MAP.get(type));
     }
 }

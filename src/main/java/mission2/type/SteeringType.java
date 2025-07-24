@@ -22,12 +22,12 @@ public enum SteeringType {
     public String getName() {
         return name;
     }
+    public static SteeringType of(final int type) {
+        return SteeringType.valueOf(CODE_MAP.get(type));
+    }
+
     SteeringType(String name, int typeNum){
         this.name = name;
         this.typeNum = typeNum;
-    }
-
-    public static SteeringType of(final int type) {
-        return SteeringType.valueOf(CODE_MAP.get(type));
     }
 }

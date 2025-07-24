@@ -2,6 +2,11 @@ package mission2;
 
 public class Printer {
     private static final String CLEAR_SCREEN = "\033[H\033[2J";
+    private static final int CarType_Q      = 0;
+    private static final int Engine_Q       = 1;
+    private static final int BrakeSystem_Q  = 2;
+    private static final int SteeringSystem_Q = 3;
+    private static final int Run_Test       = 4;
 
     private static Printer object;
 
@@ -20,15 +25,15 @@ public class Printer {
         System.out.flush();
 
         switch (currentStep) {
-            case 0:
+            case CarType_Q:
                 showCarTypeMenu(); break;
-            case 1:
+            case Engine_Q:
                 showEngineMenu(); break;
-            case 2:
+            case BrakeSystem_Q:
                 showBrakeMenu(); break;
-            case 3:
+            case SteeringSystem_Q:
                 showSteeringMenu(); break;
-            case 4:
+            case Run_Test:
                 showRunTestMenu(); break;
         }
     }
@@ -85,7 +90,7 @@ public class Printer {
     }
 
     public void showRunnableCar(Car car) {
-        System.out.printf("Car Type : %s\n", car.getType());
+        System.out.printf("Car Type : %s\n", car.getName());
         System.out.printf("Engine   : %s\n",
                 car.getComponentSet().getEachComponent("Engine"));
         System.out.printf("Brake    : %s\n",
@@ -96,20 +101,28 @@ public class Printer {
         delay(2000);
     }
 
-    void printTypeRangeError(String name, int range) {
+    public void printTypeRangeError(String name, int range) {
         String msg = "ERROR :: " + name + "은 1 ~ " + range + " 범위만 선택 가능";
         System.out.println(msg);
         delay(800);
     }
-    void printSelectName(String name, String typeName) {
+    public void printSelectName(String name, String typeName) {
         String msg = typeName + " " +  name + "를(을) 선택하셨습니다.";
         System.out.println(msg);
         delay(800);
     }
 
+    public void printTypeRangeErrorRunTest() {
+        System.out.println("ERROR :: Run 또는 Test 중 하나를 선택 필요");
+    }
+
     public void fail(String msg) {
         System.out.println("자동차 부품 조합 테스트 결과 : FAIL");
         System.out.println(msg);
+    }
+
+    public void bye() {
+        System.out.println("바이바이");
     }
 
     public void delay(int ms) {

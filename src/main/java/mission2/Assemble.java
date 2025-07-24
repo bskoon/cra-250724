@@ -5,23 +5,13 @@ import mission2.type.ComponentType;
 import java.util.Scanner;
 
 public class Assemble {
-
-
     private static final int CarType_Q      = 0;
-    private static final int Engine_Q       = 1;
-    private static final int BrakeSystem_Q  = 2;
-    private static final int SteeringSystem_Q = 3;
     private static final int Run_Test       = 4;
 
     private static final int BACKWARD = 0;
-    private static final int SEDAN = 1, SUV = 2, TRUCK = 3;
-    private static final int GM = 1, TOYOTA = 2, WIA = 3, BROKEN = 4;
-    private static final int MANDO = 1, CONTINENTAL = 2, BOSCH_B = 3;
-    private static final int BOSCH_S = 1, MOBIS = 2;
+    private static final String EXIT = "exit";
 
-    private static int[] stack = new int[5];
-    private static int currentStep;
-
+    private int currentStep;
     private Printer printer;
     private Car car;
     private RunTest runTest;
@@ -51,8 +41,8 @@ public class Assemble {
             System.out.print("INPUT > ");
             String buf = sc.nextLine().trim();
 
-            if (buf.equalsIgnoreCase("exit")) {
-                System.out.println("바이바이");
+            if (buf.equalsIgnoreCase(EXIT)) {
+                printer.bye();
                 break;
             }
 

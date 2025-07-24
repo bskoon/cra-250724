@@ -1,5 +1,6 @@
 package mission2;
 
+import mission2.type.CarType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 class AssembleTest {
@@ -71,6 +71,7 @@ class AssembleTest {
         assemble.main(null);
 
         // verify using Car class
+        verify(printer).printTypeRangeError("차량 타입", CarType.values().length);
     }
 
     @Test
@@ -82,6 +83,7 @@ class AssembleTest {
         assemble.main(null);
 
         // verify using Car class
+        verify(printer).printTypeRangeError("차량 타입", CarType.values().length);
     }
 
     @Test
@@ -93,5 +95,6 @@ class AssembleTest {
         assemble.main(null);
 
         // verify using Car class
+        verify(printer).printSelectName("차량 타입", CarType.of(1).getName());
     }
 }

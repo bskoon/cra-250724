@@ -4,7 +4,7 @@ import mission2.type.BrakeType;
 
 public class BrakeSystem extends Component {
     private final String componentNameKor = "제동장치";
-    BrakeType breakName;
+    private BrakeType brakeType;
 
     @Override
     public boolean isValidTypeRange(int type) {
@@ -19,12 +19,17 @@ public class BrakeSystem extends Component {
 
     @Override
     public void setComponentType(int type) {
-        breakName = BrakeType.of(type);
-        printer.printSelectName(componentNameKor, breakName.getName());
+        brakeType = BrakeType.of(type);
+        printer.printSelectName(componentNameKor, brakeType.getName());
     }
 
     @Override
     public String getName() {
-        return breakName.getName();
+        return brakeType.getName();
+    }
+
+    @Override
+    public Enum getType() {
+        return brakeType;
     }
 }

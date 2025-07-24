@@ -24,12 +24,13 @@ public enum CarType {
     public String getName() {
         return name;
     }
-    CarType(String name, int typeNum){
-        this.name = name;
-        this.typeNum = typeNum;
-    }
 
     public static CarType of(final int type) {
         return CarType.valueOf(CODE_MAP.get(type));
+    }
+
+    CarType(String name, int typeNum){
+        this.name = name;
+        this.typeNum = typeNum;
     }
 }

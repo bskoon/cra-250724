@@ -26,12 +26,12 @@ public enum EngineType {
         return name;
     }
 
+    public static EngineType of(final int type) {
+        return EngineType.valueOf(CODE_MAP.get(type));
+    }
+
     EngineType(String name, int typeNum){
         this.name = name;
         this.typeNum = typeNum;
-    }
-
-    public static EngineType of(final int type) {
-        return EngineType.valueOf(CODE_MAP.get(type));
     }
 }

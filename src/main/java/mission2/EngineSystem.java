@@ -4,8 +4,7 @@ import mission2.type.EngineType;
 
 public class EngineSystem extends Component {
     private final String componentNameKor = "엔진";
-    EngineType engineName;
-
+    private EngineType engineType;
 
     @Override
     public boolean isValidTypeRange(int type) {
@@ -20,12 +19,17 @@ public class EngineSystem extends Component {
 
     @Override
     public void setComponentType(int type) {
-        engineName = EngineType.of(type);
-        printer.printSelectName(componentNameKor, engineName.getName());
+        engineType = EngineType.of(type);
+        printer.printSelectName(componentNameKor, engineType.getName());
     }
 
     @Override
     public String getName() {
-        return engineName.getName();
+        return engineType.getName();
+    }
+
+    @Override
+    public Enum getType() {
+        return engineType;
     }
 }

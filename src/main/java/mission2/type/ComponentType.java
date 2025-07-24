@@ -34,13 +34,13 @@ public enum ComponentType {
         return classType;
     }
 
+    public static ComponentType of(final int type) {
+        return ComponentType.valueOf(CODE_MAP.get(type));
+    }
+
     ComponentType(Class classType, String name, int typeNum){
         this.classType = classType;
         this.name = name;
         this.typeNum = typeNum;
-    }
-
-    public static ComponentType of(final int type) {
-        return ComponentType.valueOf(CODE_MAP.get(type));
     }
 }
