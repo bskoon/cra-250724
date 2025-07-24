@@ -1,14 +1,14 @@
 package mission2;
 
-import mission2.type.BreakType;
+import mission2.type.EngineType;
 
-public class BreakSystem extends Component {
-    private final String componentNameKor = "제동장치";
-    BreakType breakName;
+public class EngineSystem extends Component {
+    private final String componentNameKor = "엔진";
+    EngineType engineName;
 
     @Override
     public boolean isValidTypeRange(int type) {
-        int typeRange = BreakType.values().length;
+        int typeRange = EngineType.values().length;
         if (!checkTypeRange(typeRange, type)) {
             printTypeRangeError(typeRange);
             return false;
@@ -19,7 +19,7 @@ public class BreakSystem extends Component {
 
     @Override
     public void setComponentType(int type) {
-        breakName = BreakType.of(type);
-        printSelectName(breakName.getName());
+        engineName = EngineType.of(type);
+        printSelectName(engineName.getName());
     }
 }
