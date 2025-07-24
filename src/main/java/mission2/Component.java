@@ -10,9 +10,6 @@ public class Component {
         this.printer = Printer.getInstance();
     }
 
-    public Component(Printer printer) {
-        this.printer = printer;
-    }
 
     protected boolean checkTypeRange(int size, int type) {
         return 0 <= type && type <= size;
@@ -27,9 +24,5 @@ public class Component {
 
     public String getName() {
         return "";
-    }
-
-    public Enum getType() {
-        return null;
     }
 }

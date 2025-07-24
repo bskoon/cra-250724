@@ -27,9 +27,4 @@ public class EngineSystem extends Component {
     public String getName() {
         return engineType.getName();
     }
-
-    @Override
-    public Enum getType() {
-        return engineType;
-    }
 }

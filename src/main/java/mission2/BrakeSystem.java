@@ -27,9 +27,4 @@ public class BrakeSystem extends Component {
     public String getName() {
         return brakeType.getName();
     }
-
-    @Override
-    public Enum getType() {
-        return brakeType;
-    }
 }

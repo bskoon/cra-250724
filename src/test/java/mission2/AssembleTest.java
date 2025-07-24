@@ -105,6 +105,20 @@ class AssembleTest {
     }
 
     @Test
+    void selectBackSelectCar() {
+        InputStream input = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("1\n0\n1\nexit".getBytes());
+        System.setIn(in);
+
+        assemble.main(null);
+
+        // verify using Car class
+        String expected = "차량 타입으로 Sedan을 선택하셨습니다.";
+        String allout = outputStreamCaptor.toString().trim();
+        assertTrue(allout.contains(expected));
+    }
+
+    @Test
     void underRangeEngineSelect() {
         InputStream input = System.in;
         ByteArrayInputStream in = new ByteArrayInputStream("1\n-1\nexit".getBytes());
@@ -450,6 +464,34 @@ class AssembleTest {
 
         // verify using Car class
         String expected = "Bosch제동장치에는 Bosch조향장치 이외 사용 불가";
+        String allout = outputStreamCaptor.toString().trim();
+        assertTrue(allout.contains(expected));
+    }
+
+    @Test
+    void testRunTestSelectError() {
+        InputStream input = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("1\n1\n1\n1\n3\nexit".getBytes());
+        System.setIn(in);
+
+        assemble.main(null);
+
+        // verify using Car class
+        String expected = "ERROR :: Run 또는 Test 중 하나를 선택 필요";
+        String allout = outputStreamCaptor.toString().trim();
+        assertTrue(allout.contains(expected));
+    }
+
+    @Test
+    void testCarTestandReturnSelectCar() {
+        InputStream input = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("1\n1\n1\n1\n2\n0\nexit".getBytes());
+        System.setIn(in);
+
+        assemble.main(null);
+
+        // verify using Car class
+        String expected = "자동차 부품 조합 테스트 결과 : PASS";
         String allout = outputStreamCaptor.toString().trim();
         assertTrue(allout.contains(expected));
     }

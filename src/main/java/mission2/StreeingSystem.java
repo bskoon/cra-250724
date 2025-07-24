@@ -26,9 +26,4 @@ public class StreeingSystem extends Component {
     public String getName() {
         return steeringType.getName();
     }
-
-    @Override
-    public Enum getType() {
-        return steeringType;
-    }
 }

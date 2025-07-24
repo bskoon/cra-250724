@@ -17,10 +17,6 @@ public class RunTest {
         this.printer = Printer.getInstance();
     }
 
-    public RunTest(Printer printer) {
-        this.printer = printer;
-    }
-
     public boolean isValidTypeRange(int type) {
         if (!checkTypeRange(RUNTEST_RANGE, type)) {
             printer.printTypeRangeErrorRunTest();

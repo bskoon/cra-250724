@@ -57,7 +57,6 @@ public class Assemble {
             try {
                 doCurrentStep(type);
             } catch (Exception e) {
-                System.out.println(e);
             }
         }
     }
