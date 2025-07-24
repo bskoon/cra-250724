@@ -153,6 +153,28 @@ public class Assemble {
         System.out.println("===============================");
     }
 
+    private static void setCurrentStepType(int type) {
+        stack[currentStep] = type;
+        switch (currentStep) {
+            case CarType_Q:
+                String carType = type == SEDAN ? "Sedan" : type == SUV ? "SUV" : "Truck";
+                System.out.printf("차량 타입으로 %s을 선택하셨습니다.\n", carType);
+                break;
+            case Engine_Q:
+                String engineName = type == GM ? "GM" : type == TOYOTA ? "TOYOTA" : type == WIA ? "WIA" : "고장난 엔진";
+                System.out.printf("%s 엔진을 선택하셨습니다.\n", engineName);
+                break;
+            case BrakeSystem_Q:
+                String breakName = type == MANDO ? "MANDO" : type == CONTINENTAL ? "CONTINENTAL" : "BOSCH";
+                System.out.printf("%s 제동장치를 선택하셨습니다.\n", breakName);
+                break;
+            case SteeringSystem_Q:
+                String steeringName = type == BOSCH_S ? "BOSCH" : "MOBIS";
+                System.out.printf("%s 조향장치를 선택하셨습니다.\n", steeringName);
+                break;
+        }
+    }
+
     private static boolean isValidTypeRange(int type) {
         switch (currentStep) {
             case CarType_Q:
@@ -189,59 +211,8 @@ public class Assemble {
         return true;
     }
 
-    private static void setCurrentStepType(int type) {
-        stack[currentStep] = type;
-        switch (currentStep) {
-            case CarType_Q:
-                String carType = type == SEDAN ? "Sedan" : type == SUV ? "SUV" : "Truck";
-                System.out.printf("차량 타입으로 %s을 선택하셨습니다.\n", carType);
-                break;
-            case Engine_Q:
-                String engineName = type == GM ? "GM" : type == TOYOTA ? "TOYOTA" : type == WIA ? "WIA" : "고장난 엔진";
-                System.out.printf("%s 엔진을 선택하셨습니다.\n", engineName);
-                break;
-            case BrakeSystem_Q:
-                String breakName = type == MANDO ? "MANDO" : type == CONTINENTAL ? "CONTINENTAL" : "BOSCH";
-                System.out.printf("%s 제동장치를 선택하셨습니다.\n", breakName);
-                break;
-            case SteeringSystem_Q:
-                String steeringName = type == BOSCH_S ? "BOSCH" : "MOBIS";
-                System.out.printf("%s 조향장치를 선택하셨습니다.\n", steeringName);
-                break;
-        }
-    }
-
-    private static boolean isValidCheck() {
-        if (ContinentalBreakOnSEDAN()) return false;
-        if (ToyotaEngineOnSUV())       return false;
-        if (WIAEngineOnTRUCK())          return false;
-        if (MANDOBreakOnTRUCK())  return false;
-        if (BOSCHSteeringWhenBOSCHBreak()) return false;
-        return true;
-    }
-
-    private static boolean BOSCHSteeringWhenBOSCHBreak() {
-        return stack[BrakeSystem_Q] == BOSCH_B && stack[SteeringSystem_Q] != BOSCH_S;
-    }
-
-    private static boolean MANDOBreakOnTRUCK() {
-        return stack[CarType_Q] == TRUCK && stack[BrakeSystem_Q] == MANDO;
-    }
-
-    private static boolean WIAEngineOnTRUCK() {
-        return stack[CarType_Q] == TRUCK && stack[Engine_Q] == WIA;
-    }
-
-    private static boolean ToyotaEngineOnSUV() {
-        return stack[CarType_Q] == SUV && stack[Engine_Q] == TOYOTA;
-    }
-
-    private static boolean ContinentalBreakOnSEDAN() {
-        return stack[CarType_Q] == SEDAN && stack[BrakeSystem_Q] == CONTINENTAL;
-    }
-
     private static void runProducedCar() {
-        if (!isValidCheck()) {
+        if (!checkMatchValidation()) {
             System.out.println("자동차가 동작되지 않습니다");
             return;
         }
@@ -267,6 +238,15 @@ public class Assemble {
         System.out.println("자동차가 동작됩니다.");
     }
 
+    private static boolean checkMatchValidation() {
+        if (ContinentalBreakOnSEDAN()) return false;
+        if (ToyotaEngineOnSUV())       return false;
+        if (WIAEngineOnTRUCK())          return false;
+        if (MANDOBreakOnTRUCK())  return false;
+        if (BOSCHSteeringWhenBOSCHBreak()) return false;
+        return true;
+    }
+
     private static void testProducedCar() {
         if (ContinentalBreakOnSEDAN()) {
             fail("Sedan에는 Continental제동장치 사용 불가");
@@ -281,6 +261,26 @@ public class Assemble {
         } else {
             System.out.println("자동차 부품 조합 테스트 결과 : PASS");
         }
+    }
+
+    private static boolean ContinentalBreakOnSEDAN() {
+        return stack[CarType_Q] == SEDAN && stack[BrakeSystem_Q] == CONTINENTAL;
+    }
+
+    private static boolean ToyotaEngineOnSUV() {
+        return stack[CarType_Q] == SUV && stack[Engine_Q] == TOYOTA;
+    }
+
+    private static boolean WIAEngineOnTRUCK() {
+        return stack[CarType_Q] == TRUCK && stack[Engine_Q] == WIA;
+    }
+
+    private static boolean MANDOBreakOnTRUCK() {
+        return stack[CarType_Q] == TRUCK && stack[BrakeSystem_Q] == MANDO;
+    }
+
+    private static boolean BOSCHSteeringWhenBOSCHBreak() {
+        return stack[BrakeSystem_Q] == BOSCH_B && stack[SteeringSystem_Q] != BOSCH_S;
     }
 
     private static void fail(String msg) {
