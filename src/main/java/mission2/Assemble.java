@@ -57,7 +57,7 @@ public class Assemble {
             try {
                 doCurrentStep(type);
             } catch (Exception e) {
-
+                System.out.println(e);
             }
         }
     }
@@ -89,15 +89,16 @@ public class Assemble {
             car = new Car(componentSet);
         }
         else {
-            ComponentType componentType = ComponentType.of(type);
-            component = (Component) componentType.getClassType().newInstance();
+            ComponentType componentType = ComponentType.of(currentStep);
+            Class cls = componentType.getClassType();
+            component = (Component) cls.newInstance();
         }
     }
 
     private boolean isValidTypeRange(int type) {
-        if (type == CarType_Q) {
+        if (currentStep == CarType_Q) {
             return car.isValidTypeRange(type);
-        } else if (type == Run_Test) {
+        } else if (currentStep == Run_Test) {
             return runTest.isValidTypeRange(type);
         }
         return component.isValidTypeRange(type);
@@ -122,7 +123,7 @@ public class Assemble {
         }
         else {
             component.setComponentType(type);
-            car.getComponentSet().setComponents(ComponentType.of(type).getName(), component.getName());
+            car.getComponentSet().setComponents(ComponentType.of(currentStep).getName(), component.getName());
         }
         currentStep++;
     }

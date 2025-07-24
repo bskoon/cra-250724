@@ -109,6 +109,6 @@ public class RunTest {
 
     private static boolean BOSCHSteeringWhenBOSCHBreak(Car car) {
         return car.getComponentSet().getEachComponent("Brake").equals(BOSCH_B.getName()) &&
-                car.getComponentSet().getEachComponent("Steering").equals(BOSCH_S.getName());
+                !car.getComponentSet().getEachComponent("Steering").equals(BOSCH_S.getName());
     }
 }

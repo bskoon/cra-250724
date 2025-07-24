@@ -102,12 +102,17 @@ public class Printer {
     }
 
     public void printTypeRangeError(String name, int range) {
-        String msg = "ERROR :: " + name + "은 1 ~ " + range + " 범위만 선택 가능";
+        String msg = "ERROR :: " + name + "은(는) 1 ~ " + range + " 범위만 선택 가능";
         System.out.println(msg);
         delay(800);
     }
     public void printSelectName(String name, String typeName) {
         String msg = typeName + " " +  name + "를(을) 선택하셨습니다.";
+        System.out.println(msg);
+        delay(800);
+    }
+    public void printSelectNameCar(String typeName) {
+        String msg = "차량 타입으로 " + typeName + "을 선택하셨습니다.";
         System.out.println(msg);
         delay(800);
     }

@@ -29,7 +29,7 @@ public class Car {
 
     public void setComponentType(int type) {
         carType = CarType.of(type);
-        printer.printSelectName(componentNameKor, carType.getName());
+        printer.printSelectNameCar(carType.getName());
     }
 
     public String getName() {
