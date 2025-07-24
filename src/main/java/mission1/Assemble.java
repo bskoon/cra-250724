@@ -26,6 +26,12 @@ public class Assemble {
         Scanner sc = new Scanner(System.in);
         currentStep = CarType_Q;
 
+        assembleCar(sc);
+
+        sc.close();
+    }
+
+    private static void assembleCar(Scanner sc) {
         while (true) {
             showCurrentStep();
 
@@ -58,8 +64,6 @@ public class Assemble {
 
             doStepJob(type);
         }
-
-        sc.close();
     }
 
     private static void goBackwardStep() {

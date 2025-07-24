@@ -23,6 +23,12 @@ public class Assemble {
 
 
     public static void main(String[] args) {
+        // Pseudo Code for assemble
+        // 1. select type
+        // 2. select components
+        // 3. test
+
+
         Scanner sc = new Scanner(System.in);
         currentStep = CarType_Q;
 
