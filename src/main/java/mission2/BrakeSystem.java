@@ -1,15 +1,14 @@
 package mission2;
 
-import mission2.type.EngineType;
+import mission2.type.BrakeType;
 
-public class EngineSystem extends Component {
-    private final String componentNameKor = "엔진";
-    EngineType engineName;
-
+public class BrakeSystem extends Component {
+    private final String componentNameKor = "제동장치";
+    BrakeType breakName;
 
     @Override
     public boolean isValidTypeRange(int type) {
-        int typeRange = EngineType.values().length;
+        int typeRange = BrakeType.values().length;
         if (!checkTypeRange(typeRange, type)) {
             printer.printTypeRangeError(componentNameKor, typeRange);
             return false;
@@ -20,12 +19,12 @@ public class EngineSystem extends Component {
 
     @Override
     public void setComponentType(int type) {
-        engineName = EngineType.of(type);
-        printer.printSelectName(componentNameKor, engineName.getName());
+        breakName = BrakeType.of(type);
+        printer.printSelectName(componentNameKor, breakName.getName());
     }
 
     @Override
     public String getName() {
-        return engineName.getName();
+        return breakName.getName();
     }
 }

@@ -10,7 +10,7 @@ public class StreeingSystem extends Component {
     public boolean isValidTypeRange(int type) {
         int typeRange = SteeringType.values().length;
         if (!checkTypeRange(typeRange, type)) {
-            printTypeRangeError(typeRange);
+            printer.printTypeRangeError(componentNameKor, typeRange);
             return false;
         }
         return true;
@@ -19,6 +19,11 @@ public class StreeingSystem extends Component {
     @Override
     public void setComponentType(int type) {
         steeringName = SteeringType.of(type);
-        printSelectName(steeringName.getName());
+        printer.printSelectName(componentNameKor, steeringName.getName());
+    }
+
+    @Override
+    public String getName() {
+        return steeringName.getName();
     }
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public enum BreakType {
+public enum BrakeType {
     MANDO("MANDO", 1),
     CONTINENTAL("CONTINENTAL", 2),
     BOSCH_B("BOSCH",3);
@@ -14,7 +14,7 @@ public enum BreakType {
     private final int typeNum;
 
     private static final Map<Integer, String> CODE_MAP = Collections.unmodifiableMap(
-            Stream.of(values()).collect(Collectors.toMap(BreakType::getTypeNum, BreakType::name))
+            Stream.of(values()).collect(Collectors.toMap(BrakeType::getTypeNum, BrakeType::name))
     );
 
     public int getTypeNum() {
@@ -25,12 +25,12 @@ public enum BreakType {
         return name;
     }
 
-    BreakType(String name, int typeNum){
+    BrakeType(String name, int typeNum){
         this.name = name;
         this.typeNum = typeNum;
     }
 
-    public static BreakType of(final int type) {
-        return BreakType.valueOf(CODE_MAP.get(type));
+    public static BrakeType of(final int type) {
+        return BrakeType.valueOf(CODE_MAP.get(type));
     }
 }
